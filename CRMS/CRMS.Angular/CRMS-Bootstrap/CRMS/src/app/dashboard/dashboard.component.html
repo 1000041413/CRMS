@@ -1,0 +1,64 @@
+<div class="container">
+    <br/>
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Upcoming</h4>
+        <div class="list-group" style="min-height: 500px;max-height: 500px;overflow-x: auto;">
+          <mat-card *ngIf="upcomingBookings.length==0">No Records Found!</mat-card>
+          <div style="background-color: green;color: white" *ngFor="let booking of upcomingBookings" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1" id="{{booking.roomName}}_upcoming">
+                <strong>{{booking.roomName}}</strong>
+              </h5>
+            </div>
+            <small>
+              <strong>Location : </strong>{{booking.roomLocation}}</small>
+            <br/>
+            <small>
+              <strong>Booked From :</strong> {{booking.startDateTs | date:'dd-MMM-yyyy HH:mm a'}}
+              <strong> To </strong> {{booking.endDateTs | date:'dd-MMM-yyyy HH:mm a'}}</small>
+            <br/>
+            <small *ngIf="isFacultyManager">
+              <strong>Booked by :</strong> {{booking.bookedBy}}</small>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4 ">
+        <h4>Cancelled</h4>
+        <div class="list-group" style="min-height: 500px;max-height: 500px;overflow-x: auto;">
+          <mat-card *ngIf="cancelledBooking.length==0">No Records Found!</mat-card>
+          <div style="background-color: orange;color: black" *ngFor="let booking of cancelledBooking" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"  id= '{{booking.roomName}}_cancelled'>{{booking.roomName}}</h5>
+            </div>
+            <small>Location : {{booking.roomLocation}}</small>
+            <br/>
+            <small>Booked from {{booking.startDateTs | date:'dd-MMM-yyyy HH:mm a'}} to {{booking.endDateTs | date:'dd-MMM-yyyy HH:mm
+              a'}}</small>
+            <br/>
+            <small>Cancelled on {{booking.cancelledOnTs | date:'dd-MMM-yyyy HH:mm a'}}</small>
+            <br/>
+            <small *ngIf="isFacultyManager">Booked by {{booking.bookedBy}}</small>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h4>Booking History</h4>
+        <div class="list-group" style="min-height: 500px;max-height: 500px;overflow-x: auto;">
+          <mat-card *ngIf="bookingHistory.length==0">No Records Found!</mat-card>
+          <div style="background-color: lightgray;color: black" *ngFor="let booking of bookingHistory" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{booking.roomName}}</h5>
+            </div>
+            <small>Location : {{booking.roomLocation}}</small>
+            <br/>
+            <small>Booked from {{booking.startDateTs | date:'dd-MMM-yyyy HH:mm a'}} to {{booking.endDateTs | date:'dd-MMM-yyyy HH:mm
+              a'}}</small>
+            <br/>
+            <small *ngIf="isFacultyManager">Booked by {{booking.bookedBy}}</small>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

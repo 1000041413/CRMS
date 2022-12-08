@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <form class="col-md-6" (ngSubmit)="save()" [formGroup]="roomForm" ngNativeValidate>
+        <div>
+          <h1>Add/Edit Room</h1>
+        </div>
+        <br/>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="name">Room Name</label>
+            <input type="text" class="form-control" name="name" id = 'name' formControlName="name" placeholder="Room Name">
+            <small [hidden]="roomForm.controls.name.valid || roomForm.controls.name.untouched" class="text-danger">
+                Room Name is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" name="location" id= 'location' formControlName="location" placeholder="Location">
+            <small [hidden]="roomForm.controls.location.valid || roomForm.controls.location.untouched" class="text-danger">
+              Location is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="capacity">Capacity</label>
+            <input type="text" class="form-control" name="capacity" id='capacity' formControlName="capacity" placeholder="Capacity">
+            <small [hidden]="roomForm.controls.capacity.valid || roomForm.controls.capacity.untouched" class="text-danger">
+              Capacity is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="roomType">Room Type</label>
+            <select class="form-control" id='type' formControlName="roomTypeId" name="roomType">
+              <option value="">Choose...</option>
+              <option [value]="roomtype.id" *ngFor="let roomtype of roomTypeList">
+                  {{roomtype.roomTypeName}}
+              </option>
+            </select>
+            <small [hidden]="roomForm.controls.roomTypeId.valid || roomForm.controls.roomTypeId.untouched" class="text-danger">
+              Room Type is required
+            </small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="isActive">Is Active</label>
+            <select class="form-control" id='status' formControlName="isActive" name="isActive">
+              <option value="">Choose...</option>
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" id='addRoomButton' [disabled]="roomForm.invalid" class="btn btn-success">Save</button>
+        <a class="btn btn-warning"  routerLink="/room" routerLinkActive="active">
+          <span>Cancel</span>
+        </a>
+      </form>
+    </div>
+  </div>

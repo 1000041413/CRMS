@@ -1,0 +1,62 @@
+<div class="container">
+
+    <div class="row">
+        <h1>Manange Rooms</h1>
+    </div>
+
+    <div class="row">
+        <a [routerLink]="['/room/form', {}]" id='addRoom' routerLinkActive="active">
+            <i class="fas fa-plus-circle fa-2x btn-circle"></i>
+        </a>
+        <i (click)="refresh()" class="fas fa-sync-alt fa-2x btn-circle"></i>
+    </div>
+    <div class="row">
+        <table class="table table-hover" datatable [dtOptions]="dtOptions">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Room name
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Capacity
+                    </th>
+                    <th>
+                        Room Type
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="roomslist.length === 0">
+                    <td colspan="6" class="text-center">
+                        <span>No Records Found</span>
+                    </td>
+                </tr>
+                <tr *ngFor="let item of roomslist">
+                    <td id='{{item.name}}'>{{item.name}}</td>
+                    <td>{{item.location}}</td>
+                    <td>{{item.capacity}}</td>
+                    <td>{{item.name | uppercase}}</td>
+                    <td>
+                        <span *ngIf="item.isActive" class="badge bg-success">Active</span>
+                        <span *ngIf="!item.isActive" class="badge bg-danger">In-Active</span>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" [routerLink]="['/room/form', item]" [skipLocationChange]="true">
+                            <i class="fas fa-edit btn-circle" alt="Edit"></i>
+                        </a>
+                        <i (click)="delete(item)" class="fas fa-trash-alt btn-circle" alt="Delete"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

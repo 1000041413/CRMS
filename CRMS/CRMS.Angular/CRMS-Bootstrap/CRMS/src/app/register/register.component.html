@@ -1,0 +1,82 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <form class="col-md-6" (ngSubmit)="register()" [formGroup]="registerForm" ngNativeValidate>
+        <div class="text-center">
+          <h1>Register</h1>
+        </div>
+        <br/>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="empid">Emp ID</label>
+            <input type="text" class="form-control" name="empid" id="txtempid" formControlName="empid" placeholder="Employee Id">
+            <span class="text-danger" *ngIf="registerForm.get('empid').invalid && (registerForm.get('empid').dirty || registerForm.get('empid').touched )">Employee Id is required </span>
+          </div>
+  
+  
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="txtFirstname">Firstname</label>
+            <input type="text" class="form-control" id="txtFirstname" formControlName="firstname" placeholder="Firstname">
+            <span class="text-danger" *ngIf="registerForm.get('firstname').invalid && (registerForm.get('firstname').dirty || registerForm.get('firstname').touched )">Firstname is required </span>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="txtLastname">Lastname</label>
+            <input type="text" class="form-control" id="txtLastname" formControlName="lastname" placeholder="Lastname">
+            <span class="text-danger" *ngIf="registerForm.get('lastname').invalid && (registerForm.get('lastname').dirty || registerForm.get('lastname').touched )">Lastname is required </span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtUserType">User Type</label>
+            <select id="txtUserType" class="form-control" formControlName="userType">
+              <option selected value="">Choose...</option>
+              <option value="2">Employee</option>
+              <option value="1">Facility Manager</option>
+            </select>
+           <span class="text-danger" *ngIf="registerForm.get('userType').invalid && (registerForm.get('userType').dirty || registerForm.get('userType').touched )">User Type is required </span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtEmail">Email</label>
+            <input type="email" class="form-control" id="txtemail" formControlName="email" placeholder="Email">
+            <span class="text-danger" *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched )">Email is required</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtPassword">Password</label>
+            <input type="password" class="form-control" id="txtPassword" formControlName="password" placeholder="Password">
+            <span class="text-danger" *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched )">Password is required</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtConfirmPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="txtConfirmPassword" formControlName="confirmPassword" placeholder="Confirm Password">
+            <span class="text-danger" *ngIf="registerForm.invalid && (registerForm.dirty || registerForm.touched ) && registerForm.errors?.compareValidator">Password and Confirm Password do not match</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtmobile">Mobile No.</label>
+            <input type="text" class="form-control" id="txtmobile" formControlName="phoneNumber" placeholder="Mobile No.">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtAddress">Address</label>
+            <textarea class="form-control" id="txtAddress" formControlName="empAddress" placeholder="Address"></textarea>
+            <!-- <input type="text" class="form-control"  id="txtAddress" [(ngModel)]="register.empAddress" placeholder="Address"> -->
+          </div>
+        </div>
+  
+        <button type="submit" [disabled]="registerForm.invalid" id='registerUser' class="btn btn-success">Register</button>
+        <a class="btn btn-primary"  routerLink="/login" routerLinkActive="active">
+          <span>Login</span>
+        </a>
+      </form>
+    </div>
+  </div>

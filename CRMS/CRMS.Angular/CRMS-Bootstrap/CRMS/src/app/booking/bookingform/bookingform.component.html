@@ -1,0 +1,60 @@
+<div class="container" >
+<mat-toolbar color="primary">
+   <span class="fill-remaining-space">Room Booking Form</span>
+ </mat-toolbar>
+<form [formGroup]="bookingForm" (ngSubmit)="save()" class="form">
+            
+                    <mat-label>Select Room</mat-label>
+                    <mat-form-field  class="form-element" >
+                   <mat-select formControlName="roomId" [(ngModel)]="roomControl">
+                      <mat-option *ngFor="let meetingRoom of filteredRoomList" [value]="meetingRoom.id">
+                      {{ meetingRoom.name }}
+                      </mat-option>
+                      
+                   </mat-select>
+                   
+                  </mat-form-field>
+                  
+               
+                  <mat-form-field  class="form-element" >
+                  <mat-label>Start Date</mat-label>                
+                   <input matInput [matDatepicker]="pickerstartdate"  formControlName="startDate">
+                  <mat-hint>DD/MM/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="pickerstartdate"></mat-datepicker-toggle>
+                  <mat-datepicker #pickerstartdate></mat-datepicker>  
+                 
+                   
+               </mat-form-field>
+
+               <mat-form-field  class="form-element" >
+                  <mat-label>Start Time</mat-label>                
+                  <input matInput formControlName="startTime">  
+                                                
+               </mat-form-field>
+
+               
+                  
+               
+                                
+               <mat-form-field  class="form-element" >
+                  <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="pickerendate"  formControlName="endDate">
+                    <mat-hint>DD/MM/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerendate"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerendate></mat-datepicker> 
+                    
+                  </mat-form-field>
+                  
+                  <mat-form-field  class="form-element" >
+                     <mat-label>End Time</mat-label>                
+                     <input matInput  formControlName="endTime">  
+                     
+                  </mat-form-field>
+                       
+                     
+                  <div class="form-element">
+                     <button mat-raised-button color="primary" type="submit" class="button">Save</button>
+                   </div>
+           
+               </form>
+            </div> 

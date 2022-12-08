@@ -1,0 +1,59 @@
+<div class="container">
+
+    <div class="row">
+      <h1>Booking</h1>
+      
+    </div>
+  
+    <div class="row">
+      <a *ngIf="!isFacultyManager" [routerLink]="['/booking/form',{}]" routerLinkActive="active" id="addRoom">
+        <i class="fas fa-plus-circle fa-2x btn-circle" title="New Booking"></i></a>
+      <i (click)="refresh()" class="fas fa-sync-alt fa-2x btn-circle"></i>
+    </div>
+    <div class="row">
+      <table datatable [dtOptions]="dtOptions" class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+              <th>
+              Room Name
+            </th>
+            <th>
+              Location
+            </th>
+            <th>
+              Start Date
+            </th>
+            <th>
+              End Date
+            </th>
+            <th>
+              Status
+            </th>
+            <th *ngIf="!isFacultyManager">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="bookings.length === 0">
+            <td colspan="6" class="text-center">
+              <span>No Records Found</span>
+            </td>
+          </tr>
+          <tr *ngFor="let item of bookings">               
+            <td id='{{item.id}}'>{{item.roomName}}</td>
+            <td>{{item.roomLocation}}</td>
+            <td>{{item.startDateTs | date:'dd-MMM-yyyy HH:mm a'}}</td>
+            <td>{{item.endDateTs | date:'dd-MMM-yyyy HH:mm a'}}</td>
+            <td>
+              <span *ngIf="!item.isCancelled" class="badge bg-success">Booked</span>
+              <span *ngIf="item.isCancelled" class="badge bg-danger">Cancelled</span>
+            </td>
+            <td *ngIf="!isFacultyManager">
+              <button [disabled]="item.isCancelled" id='{{item.roomName}}_cancel' type="button"
+                (click)="cancelBooking(item)" class="btn btn-outline-warning"><i class="fas fa-ban btn-circle"></i>
+                Cancel</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
