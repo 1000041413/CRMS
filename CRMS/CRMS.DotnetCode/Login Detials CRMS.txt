@@ -1,0 +1,9 @@
+Facility Manager Login Details
+
+arun@hexaware.com
+Hexaware@123
+
+
+Employee Login:
+murali@hexaware.com
+Hexaware@123
